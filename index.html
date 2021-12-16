@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+       <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+        <a href="exercicios/teste.html">00=Teste</a>
+    </nav>   
+    <section id="conteudo">
+
+    </section>
+    <footer>
+        <br>
+        Curso de Web Moderno
+    </footer>
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            const conteudo = document.getElementById("conteudo")
+            link.onclick = event => {
+                event.preventDefault() //anula o comportamento padrão 
+                fetch(link.href) //fetch é uma promise moderna q substitui o ajax e não precisa do JQuery
+                .then(resp => resp.text())//pega o conteúdo html da página que foi feita a requisição
+                .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+</html>
